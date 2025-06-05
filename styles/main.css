@@ -1,0 +1,357 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* CSS variables for consistent theming across the application */
+:root {
+    --primary-color: #4a6cf7;
+    /* Main theme color for buttons, selections */
+    --primary-hover: #3a5ce5;
+    /* Darker shade for hover states */
+    --secondary-color: #f5f7fa;
+    /* Light background color */
+    --border-color: #e2e8f0;
+    /* Subtle border color */
+    --text-color: #2d3748;
+    /* Main text color */
+    --light-text: #718096;
+    /* Secondary, lighter text color */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Consistent shadow effect */
+    --radius: 4px;
+    /* Border radius for UI elements */
+}
+
+/* Basic body styling */
+body {
+    color: var(--text-color);
+    background-color: #f8fafc;
+    height: 100vh;
+    /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Prevents scrolling on the main container */
+}
+
+/* Button styles for consistent interactive elements */
+button {
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    background: white;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: var(--secondary-color);
+}
+
+/* Primary button style for important actions */
+button.primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+button.primary:hover {
+    background: var(--primary-hover);
+}
+
+/* Header styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 10;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Main layout */
+main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background: white;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sidebar h3 {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.elements-container {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.element {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: grab;
+    transition: all 0.2s;
+}
+
+.element:hover {
+    background: var(--secondary-color);
+}
+
+.element:active {
+    cursor: grabbing;
+}
+
+.properties-form {
+    padding: 16px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--light-text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 14px;
+}
+
+.form-group input[type="color"] {
+    height: 40px;
+}
+
+/* Canvas styles */
+.canvas-container {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    background-color: var(--secondary-color);
+}
+
+.canvas {
+    background: white;
+    min-height: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 32px;
+    position: relative;
+}
+
+.empty-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 200px;
+    color: var(--light-text);
+    text-align: center;
+}
+
+.empty-state .message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.empty-state .material-symbols-outlined {
+    font-size: 48px;
+    opacity: 0.5;
+}
+
+/* Canvas elements */
+.canvas-element {
+    position: relative;
+    padding: 16px;
+    margin: 8px 0;
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.canvas-element:hover {
+    border-color: var(--border-color);
+}
+
+.canvas-element.selected {
+    border-color: var(--primary-color);
+}
+
+.canvas-element .element-actions {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.canvas-element:hover .element-actions {
+    opacity: 1;
+}
+
+.element-action {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.element-action.move {
+    cursor: move;
+}
+
+.element-action.delete {
+    color: #e53e3e;
+}
+
+.element-action.delete:hover {
+    background: rgba(229, 62, 62, 0.1);
+    border-color: #e53e3e;
+}
+
+.element-action:hover {
+    background: var(--secondary-color);
+}
+
+/* Drag and drop styles */
+.drag-over {
+    border: 2px dashed var(--primary-color);
+    background-color: rgba(74, 108, 247, 0.05);
+}
+
+.placeholder {
+    height: 2px;
+    background-color: var(--primary-color);
+    margin: 8px 0;
+    transition: all 0.2s;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.modal-content {
+    position: relative;
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-body {
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.close-modal {
+    color: var(--light-text);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--text-color);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        max-height: 200px;
+    }
+
+    .canvas-container {
+        padding: 16px;
+    }
+
+    .canvas {
+        padding: 16px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}

@@ -1,0 +1,109 @@
+1
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaWeb - Simple Website Builder</title>
+    <!-- Main stylesheet for our application -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Google Material Icons for visual elements -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+</head>
+
+<body>
+    <!-- Top navigation bar with logo and action buttons -->
+    <header>
+        <div class="logo">InstaWeb</div>
+        <div class="actions">
+            <!-- Preview button shows how the website will look without editor UI -->
+            <button id="previewBtn">Preview</button>
+            <!-- Save button exports the website as HTML file -->
+            <button id="saveBtn" class="primary">Save</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Left sidebar containing draggable elements -->
+        <aside class="sidebar elements-panel">
+            <h3>Elements</h3>
+            <div class="elements-container">
+                <!-- Draggable elements with data-type attribute to identify element type -->
+                <!-- Heading element that can be dragged to canvas -->
+                <div class="element" draggable="true" data-type="heading">
+                    <span class="material-symbols-outlined">title</span>
+                    <span>Heading</span>
+                </div>
+                <!-- Paragraph element for text content -->
+                <div class="element" draggable="true" data-type="paragraph">
+                    <span class="material-symbols-outlined">text_fields</span>
+                    <span>Paragraph</span>
+                </div>
+                <!-- Image element for adding images -->
+                <div class="element" draggable="true" data-type="image">
+                    <span class="material-symbols-outlined">image</span>
+                    <span>Image</span>
+                </div>
+                <!-- Button element for interactive buttons -->
+                <div class="element" draggable="true" data-type="button">
+                    <span class="material-symbols-outlined">smart_button</span>
+                    <span>Button</span>
+                </div>
+                <!-- Divider element for visual separation -->
+                <div class="element" draggable="true" data-type="divider">
+                    <span class="material-symbols-outlined">horizontal_rule</span>
+                    <span>Divider</span>
+                </div>
+                <!-- Spacer element to add vertical space -->
+                <div class="element" draggable="true" data-type="spacer">
+                    <span class="material-symbols-outlined">height</span>
+                    <span>Spacer</span>
+                </div>
+            </div>
+        </aside> <!-- Main canvas area where elements will be dropped and displayed -->
+        <section class="canvas-container">
+            <div id="canvas" class="canvas">
+                <!-- Empty state shown when canvas has no elements -->
+                <div class="empty-state">
+                    <div class="message">
+                        <span class="material-symbols-outlined">drag_pan</span>
+                        <p>Drag elements from the sidebar to start building your website</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right sidebar for editing properties of selected elements -->
+        <aside class="sidebar properties-panel">
+            <h3>Properties</h3>
+            <div id="propertiesForm" class="properties-form">
+                <!-- Empty state shown when no element is selected -->
+                <div class="empty-state">
+                    <p>Select an element to edit its properties</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Modal dialog for previewing website -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Preview</h3>
+                <!-- Close button for modal -->
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- Container for preview content -->
+                <div id="previewContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript file that handles all functionality -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>
